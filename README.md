@@ -1,9 +1,9 @@
 Ionic Box
 =============================
 
-Ionic Box is a ready-to-go hybrid deveopment environment for building mobile apps with Ionic, Cordova, and Android. Ionic Box was built to make it easier for developers to build Android versions of their app, and especially for Windows users to get a complete dev environment set up without all the headaches.
+![Ionic](http://ionicframework.com/img/ionic-logo-blue.svg)
 
-This fork (from [driftyco/ionic-box](https://github.com/driftyco/ionic-box)) uses Docker insead Vagrant to build and run the ionic-box. For vagrant method see the content of vagrant folder.
+Ionic Box is a ready-to-go hybrid deveopment environment for building mobile apps with Ionic, Cordova, and Android. This fork (from [driftyco/ionic-box](https://github.com/driftyco/ionic-box)) uses Docker instead Vagrant to build the ionic-box. For vagrant method see the content of vagrant folder.
 
 
 Requirements
@@ -25,6 +25,6 @@ If you have your own ionic sources, you can launch it with:
 
 Enable USB for the container
 
-    sudo docker run -ti -p 8100:8100 -p 35729:35729 --privileged -v /dev/bus/usb:/dev/bus/usb -v \$PWD:/myApp mikamboo/ionic-box adb list
+    sudo docker run -ti --rm -p 8100:8100 -p 35729:35729 --privileged -v /dev/bus/usb:/dev/bus/usb -v \$PWD:/myApp mikamboo/ionic-box adb list
 
 
