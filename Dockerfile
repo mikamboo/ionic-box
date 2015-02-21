@@ -9,6 +9,7 @@ RUN apt-get update &&  \
 
 RUN npm install -g cordova ionic@1.3.11
 RUN npm install -g grunt-cli
+RUN npm install -g gulp
 RUN npm install -g bower
 
 RUN ionic start myApp sidemenu
