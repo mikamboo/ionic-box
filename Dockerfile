@@ -4,7 +4,7 @@ MAINTAINER mike@mikangali.com
 
 # make sure the package repository is up to date
 RUN apt-get update &&  \
-    apt-get install -y npm && ln -s /usr/bin/nodejs /usr/local/bin/node && \
+    apt-get install -y npm git && ln -s /usr/bin/nodejs /usr/local/bin/node && \
     apt-get clean
 
 RUN npm install -g cordova ionic@1.3.11
