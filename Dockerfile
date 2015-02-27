@@ -1,20 +1,27 @@
-FROM     ubuntu:14.04.2
+FROM ubuntu:14.04.2
 
 MAINTAINER mike@mikangali.com
 
-# make sure the package repository is up to date
+# Install basics 
 RUN apt-get update &&  \
-    apt-get install -y npm git && ln -s /usr/bin/nodejs /usr/local/bin/node && \
+    apt-get install -y npm git wget curl && \
+    ln -s /usr/bin/nodejs /usr/local/bin/node && \
     apt-get clean
 
+COPY tools /opt/tools
+
+# Install PhamtomJs (Ubuntu fix)
+RUN ["/opt/tools/install-phantomjs.sh"]
+
+# Install npm packages
 RUN npm install -g cordova ionic@1.3.11
 RUN npm install -g grunt-cli
 RUN npm install -g gulp
 RUN npm install -g bower
 
-RUN ionic start myApp sidemenu
+RUN ionic start ionic-demo sidemenu
 
-# Expose port: web serve (8100), livereload (35729)
+# Expose port: web (8100), livereload (35729)
 EXPOSE 8100 35729
 
 #ANDROID
@@ -39,7 +46,6 @@ ENV ANDROID_HOME /opt/android-sdk-linux
 ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
 
 # Install sdk elements
-COPY tools /opt/tools
 ENV PATH ${PATH}:/opt/tools
 
 RUN echo ANDROID_HOME="${ANDROID_HOME}" >> /etc/environment
