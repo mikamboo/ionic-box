@@ -10,8 +10,8 @@ RUN apt-get update &&  \
 
 # Install nodejs (v0.12)
 
-RUN apt-get install -y nodejs && && apt-get clean
 RUN curl -sL https://deb.nodesource.com/setup_0.12 | sudo -E bash -
+RUN apt-get install -y nodejs && apt-get clean
 
 COPY tools /opt/tools
 
@@ -19,7 +19,7 @@ COPY tools /opt/tools
 RUN ["/opt/tools/install-phantomjs.sh"]
 
 # Install npm packages
-RUN npm install -g cordova ionic@1.6.4
+RUN npm install -g cordova ionic
 RUN npm install -g grunt-cli
 RUN npm install -g gulp
 RUN npm install -g bower
