@@ -2,11 +2,16 @@ FROM ubuntu:14.04.2
 
 MAINTAINER mike@mikangali.com
 
-# Install basics 
+# Install basics
+
 RUN apt-get update &&  \
     apt-get install -y npm git wget curl && \
-    ln -s /usr/bin/nodejs /usr/local/bin/node && \
     apt-get clean
+
+# Install nodejs (v0.12)
+
+RUN apt-get install -y nodejs && && apt-get clean
+RUN curl -sL https://deb.nodesource.com/setup_0.12 | sudo -E bash -
 
 COPY tools /opt/tools
 
