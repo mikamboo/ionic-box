@@ -6,7 +6,7 @@ apt-get install -y libfreetype6 libfreetype6-dev
 apt-get install -y libfontconfig1 libfontconfig1-dev
 
 cd /tmp
-export PHANTOM_JS="phantomjs-1.9.7-linux-x86_64"
+export PHANTOM_JS="phantomjs-1.9.8-linux-x86_64"
 wget https://bitbucket.org/ariya/phantomjs/downloads/$PHANTOM_JS.tar.bz2
 
 mv $PHANTOM_JS.tar.bz2 /usr/local/share/
