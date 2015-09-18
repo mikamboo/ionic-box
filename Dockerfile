@@ -19,17 +19,18 @@ COPY tools /opt/tools
 RUN ["/opt/tools/install-phantomjs.sh"]
 
 # Install npm packages
-RUN npm install -g cordova ionic
+RUN npm install -g cordova@5.3.1 ionic@1.6.4
 RUN npm install -g grunt-cli
 RUN npm install -g gulp
 RUN npm install -g bower
 
-RUN ionic start ionic-demo sidemenu
+RUN ionic start app sidemenu
 
 # Expose port: web (8100), livereload (35729)
 EXPOSE 8100 35729
 
 #ANDROID
+
 #JAVA
 ENV DEBIAN_FRONTEND noninteractive
 # install python-software-properties (so you can do add-apt-repository)
@@ -55,8 +56,8 @@ ENV PATH ${PATH}:/opt/tools
 
 RUN echo ANDROID_HOME="${ANDROID_HOME}" >> /etc/environment
 
-RUN ["/opt/tools/android-accept-licenses.sh", "android update sdk --all --no-ui --filter platform-tools,tools,build-tools-21.1.2,android-19,addon-google_apis_x86-google-19,extra-android-support,extra-android-m2repository,extra-google-m2repository,sys-img-x86-android-21"]
+RUN ["/opt/tools/android-accept-licenses.sh", "android update sdk --all --no-ui --filter platform-tools,tools,build-tools-22.0.1,android-22,addon-google_apis_x86-google-22,extra-android-support,extra-android-m2repository,extra-google-m2repository,sys-img-x86-android-22"]
 
 
-WORKDIR ionic-demo
+WORKDIR app
 CMD ["ionic", "serve", "8100", "35729"]
